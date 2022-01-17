@@ -1,0 +1,46 @@
+<nz-layout class="layout">
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null" #slider>
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <ng-container *ngFor="let menu of menus">
+        <li nz-submenu nzOpen [nzTitle]="menu.text" [nzIcon]="menu.icon" *ngIf="menu.children">
+          <ul>
+            <li nz-menu-item *ngFor="let subMenu of menu.children" nzMatchRouter [routerLink]="subMenu.link">
+              {{ subMenu.text }}
+            </li>
+          </ul>
+        </li>
+
+        <li nz-menu-item *ngIf="!menu.children" nzMatchRouter [routerLink]="menu.link">
+          <i nz-icon [nzType]="menu.icon" *ngIf="menu.icon"></i>
+          <span>{{ menu.text }}</span>
+        </li>
+      </ng-container>
+
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header class="g-flex-h-center">
+      <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+        (click)="handleTriggerClick()"></i>
+      <ul class="qy-nav g-flex-h-center">
+        <li class="g-flex-center hide-mobile">
+           <header-user></header-user>
+        </li>
+      </ul>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <nz-footer>
+      <div nz-row nzGutter="8">
+        <span nz-col><i nz-icon nzType="copyright" nzTheme="outline"></i></span>
+        <span nz-col>2019</span>
+        <span nz-col><i nz-icon nzType="user" nzTheme="outline"></i></span>
+        <span nz-col>tqy</span>
+      </div>
+    </nz-footer>
+  </nz-layout>
+</nz-layout>
