@@ -4,6 +4,7 @@ import { SharedModule } from "@shared";
 import { LoginComponent } from "./login/login.component";
 import {AdminComponent} from "../admin/admin.component";
 import {PostListComponent} from "../admin/post/post-list/post-list.component";
+import { CallbackComponent } from './callback/callback.component';
 
 
 
@@ -16,7 +17,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    CallbackComponent
 
   ],
   imports: [
